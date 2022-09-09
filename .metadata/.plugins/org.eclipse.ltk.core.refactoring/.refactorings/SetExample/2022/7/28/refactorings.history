@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;list&apos; in &apos;Example1.main(...)&apos; to &apos;set&apos;&#x0D;&#x0A;- Original project: &apos;SetExample&apos;&#x0D;&#x0A;- Original element: &apos;Example1.main(String[]).list&apos;&#x0D;&#x0A;- Renamed element: &apos;list&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;list&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Example1.java[Example1~main~\[QString;@list!124!159!137!140!QSet\&lt;QInteger;&gt;;!0!false" name="set" references="true" stamp="1656911846230" version="1.0"/>
+</session>

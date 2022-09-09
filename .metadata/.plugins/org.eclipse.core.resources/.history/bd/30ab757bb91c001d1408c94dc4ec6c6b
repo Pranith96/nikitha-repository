@@ -1,0 +1,39 @@
+package com.example.demo.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import com.example.demo.Model.User;
+import com.example.demo.dao.RegistrationRepository;
+import com.example.demo.dao.UserRepository;
+
+@ExtendWith(SpringExtension.class)
+public class RegistrationServiceImplTest {
+
+	@Mock
+	RegistrationRepository registrationRepository;
+	
+	@Mock
+	UserRepository useRepo;
+
+	@InjectMocks
+	RegistrationServiceImpl registrationServiceImpl;
+
+	@Test
+	public void testRegUser() {
+		User user = new User();
+		user.setName("TEST");
+		user.setPassword("12345678");
+		user.setId(1);
+		
+		Mockito.when(useRepo.saveAndFlush(user)).thenReturn(user);
+		User response = registrationServiceImpl.regUser(user);
+		assertEquals(user, response);
+	}
+}
