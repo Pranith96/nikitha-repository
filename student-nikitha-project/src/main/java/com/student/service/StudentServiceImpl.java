@@ -47,7 +47,8 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> getStudentDetailsByName(String name) {
-		List<Student> response = studentRepository.findByName(name);
+		// List<Student> response = studentRepository.findByName(name);
+		List<Student> response = studentRepository.getByName(name);
 		if (response.isEmpty() || response == null) {
 			throw new RuntimeException("Data is not found for name");
 		}
@@ -56,10 +57,20 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student getStudentDetailsLogin(String loginId, String password) {
-		Optional<Student> response = studentRepository.findByLoginAndPassword(loginId, password);
+		// Optional<Student> response =
+		// studentRepository.findByLoginAndPassword(loginId, password);
+		Optional<Student> response = studentRepository.getByLoginAndPassword(loginId, password);
 		if (!response.isPresent()) {
 			throw new RuntimeException("Data is not found for login id and password");
 		}
 		return response.get();
+	}
+
+	@Override
+	public String deleteStudentDetails(Integer studentId) {
+		//studentRepository.deleteById(studentId);
+		Student response = getStudentDetails(studentId);
+		studentRepository.delete(response);
+		return "deleted successfully";
 	}
 }
