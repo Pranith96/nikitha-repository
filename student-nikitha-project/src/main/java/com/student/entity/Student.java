@@ -1,5 +1,6 @@
 package com.student.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,28 +8,65 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "student_table")
+@ApiModel(description = "Details About the Student Accounts")
 public class Student {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "student_id")
+	@ApiModelProperty(notes = "The Unique student id Number as primary key")
 	private Integer studentId;
+	@ApiModelProperty(notes = "The student name as String")
 	@Column(name = "student_name")
 	private String name;
+	@ApiModelProperty(notes = "The mobile Number as string")
 	@Column(name = "mobile_number") // , length = 10, Nullable = false
 	private String mobileNumber;
+	@ApiModelProperty(notes = "The Email as string")
 	@Column(name = "email_id")
 	private String email;
+	@ApiModelProperty(notes = "The Unique login id Number")
 	@Column(name = "login_id", unique = true)
 	private String login;
+	@ApiModelProperty(notes = "The Password as String")
 	@Column(name = "password")
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private Status status;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@ManyToOne(cascade = CascadeType.ALL, targetEntity = College.class)
+	@JoinColumn(name = "college_id")
+	private College college;
+
+	public College getCollege() {
+		return college;
+	}
+
+	public void setCollege(College college) {
+		this.college = college;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	public Status getStatus() {
 		return status;

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -35,5 +36,9 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 	
 	@Query("select s from Student s where s.login=?1 and s.password=?2")
 	Optional<Student> getByLoginAndPassword(String loginId, String password);
+
+	@Modifying
+	@Query("update Student s set s.name=:name where s.studentId=:studentId")
+	void updateNameById(String name, Integer studentId);
 
 }

@@ -1,0 +1,17 @@
+package com.student.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
+public class Address {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer addressId;
+	private String locality;
+	private String state;
+	private String country;
+
+}
