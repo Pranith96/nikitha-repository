@@ -1,10 +1,13 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class Example {
 
 	public static void main(String[] args) {
 		Map<Integer, String> map = new HashMap<>(); // LinkedHashMap , TreeMap
+	//	ConcurrentMap<Integer, String> m = new ConcurrentHashMap<>();
 		map.put(1, "ABC");
 		map.put(2, "BYS");
 		map.put(3, "QWE");
@@ -27,7 +30,9 @@ public class Example {
 		map.remove(9);
 		System.out.println(map);
 		System.out.println(map.keySet());
+		System.out.println(map.values());
 		System.out.println(map.containsKey(2));
+		System.out.println(map.containsValue("HG"));
 
 		for (Map.Entry<Integer, String> data : map.entrySet()) {
 			System.out.println(data.getValue());
